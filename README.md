@@ -4,16 +4,16 @@ ive rewritten my bash scripts to python... yeah!
 so now pyBurn is a hook for pyLoad itself.
 
 ## NOTE!
-Currently this is in heavy development.
-So if you like to test, feel free to do so but notice that this is still a verry early version 
+Currently this is in heavy development.<br />
+So if you like to test, feel free to do so but notice that this is still a verry early version <br />
 
 ## Current features:
 
-**Add new Links over Twitter**
-Usage: AddLinks {CONTAINERNAME} LINK LINK LINK
-If no Containername it generates one based on DM Sendername and Date.
-
-**Twitter Response**
+**Add new Links over Twitter**<br />
+Usage: AddLinks {CONTAINERNAME} LINK LINK LINK<br />
+If no Containername it generates one based on DM Sendername and Date.<br />
+<br />
+**Twitter Response**<br />
 Activate the Twitter Response Options in the Settings and pyBurn will send you either an DM or an @ reply after adding the links from your AddLinks command.
 
 
@@ -31,11 +31,11 @@ Install python-twitter
 
 go to http://twitter.com/apps and create an app, be sure you select DM access under rights.
 
-**Download pyBurn*** <br />
-open pyBurn in your Favorite text editor and change this line:
-<code>api = twitter.Api(consumer_key='', consumer_secret='', access_token_key='', access_token_secret='')</code>
-to contain your app keys
-(copy/move it to module/plugins/hooks)
+**Download pyBurn**<br />
+open pyBurn in your Favorite text editor and change this line:<br />
+<code>api = twitter.Api(consumer_key='', consumer_secret='', access_token_key='', access_token_secret='')</code><br />
+to contain your app keys<br />
+(copy/move it to module/plugins/hooks)<br />
 
 Start pyLoad
 
