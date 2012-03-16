@@ -54,15 +54,22 @@ class pyBurn(Hook):
         api = twitter.Api(consumer_key='', consumer_secret='', access_token_key='', access_token_secret='')
         self.logDebug("Getting DirectMessages from Twitter")
         messages = api.GetDirectMessages()
+        if self.getConfig('whiteUserOnly'):
+            self.logDebug("Useing Whitelist Filter for DMs")
+            self.logDebug("Whitelisted User(s) %s" % (self.getConfig('UserWhitelist')) ) 
         for dm in messages:
             fromUser = dm.sender_screen_name
             if self.getConfig('whiteUserOnly'):
                 self.logDebug("Useing Whitelist Filter for DMs")
                 if fromUser in self.getConfig('UserWhitelist'):
                     dmcontent = dm.text
+                    self.logDebug("Message from: %s with text: %s" % (fromUser, dmcontent))
+                else:
+                    dmcontent = "User @%s not in whitelist..." % (fromUser)
+                    self.logDebug("User @%s not in whitelist..." % (fromUser))
             else:
                 dmcontent = dm.text
-            self.logDebug("Message from: %s with text: %s" % (fromUser, dmcontent))
+                self.logDebug("Message from: %s with text: %s" % (fromUser, dmcontent))
             splitDM = dmcontent.split()
             if splitDM[0].lower() == "addlink" or splitDM[0].lower() == "addlinks":
                 splitDM.remove(splitDM[0])
