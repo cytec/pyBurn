@@ -35,13 +35,13 @@ class pyBurn(Hook):
     __version__ = "0.1"
     __description__ = """Control pyLoad via Twitter and other cool stuff"""
     __config__ = [ ("activated", "bool", "Activated" , "False"),
-                    ("twinterval", "int", "Seconds between request to Twitter", "30"),
-                    ("UserWhitelist", "str", "Only allow Specific user to interact via DM", "TwitterUser"),
-                    ("whiteUserOnly", "bool", "Only allow users listed above to interact via Twitter DM", "False"),
-                    ("twitresponse", "bool", "Send response Message when Commands where executed?", "False"),
-                    ("twitify", "bool", "Notifications over twitter when a Package Download finished?", "False"),
-                    ("twitifyDM", "bool", "Notifications via DM?", "False"),
-                    ("twitifyUser", "str", "Name of the User that should be notified", "TwitterUser")]
+                    ("twinterval", "int", "Interval", "30"),
+                    ("UserWhitelist", "str", "DM Whitelist", "YOUR USER NAME"),
+                    ("whiteUserOnly", "bool", "Use DM Whitelist", "False"),
+                    ("twitresponse", "bool", "Twitter Response", "False"),
+                    ("twitify", "bool", "Twitter Notify", "False"),
+                    ("twitifyDM", "bool", "Use DM for Notify", "True"),
+                    ("twitifyUser", "str", "Twitter Notify User", "YOUR USER NAME")]
     __threaded__ = []
     __author_name__ = ("cytec")
     __author_mail__ = ("iamcytec@googlemail.com")
@@ -50,6 +50,7 @@ class pyBurn(Hook):
         self.interval = self.getConfig('twinterval')
 
     def periodical(self):
+        #insert APP data here:
         api = twitter.Api(consumer_key='', consumer_secret='', access_token_key='', access_token_secret='')
         self.logDebug("Getting DirectMessages from Twitter")
         messages = api.GetDirectMessages()
@@ -77,13 +78,13 @@ class pyBurn(Hook):
                 api.DestroyDirectMessage(dm.id)
                 self.logDebug("Deleted: DM with id %s from User: %s" % (dm.id, fromUser))
                 if self.getConfig('twitresponse'):
-                    twitifyUser = self.getConfig('twitifyUser')
+                    if self.getConfig('twitifyUser') != "YOUR USER NAME" or self.getConfig('twitifyUser') != " ":
+                        twitifyUser = self.getConfig('twitifyUser')
+                    else:
+                        twitifyUser = fromUser
                     if self.getConfig('twitifyDM'):
                         api.PostDirectMessage(twitifyUser, "Added: %s Links to Package: %s" % (len(splitDM), pkgname))
                         self.logDebug("DM send to %s" % (twitifyUser))
                     else:
                         api.PostUpdate("@%s Added: %s Links to Package: %s" % (twitifyUser, len(splitDM), pkgname))
                         self.logDebug("Note send to @%s" % (twitifyUser))
-
-
-
