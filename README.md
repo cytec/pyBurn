@@ -16,6 +16,14 @@ If no Containername it generates one based on DM Sendername and Date.<br />
 **Twitter Response**<br />
 Activate the Twitter Response Options in the Settings and pyBurn will send you either an DM or an @ reply after adding the links from your AddLinks command.
 
+**Twitter Commands**<br />
+status: returns the current status<br />
+help: list of commands<br />
+version: display pyLoad and pyBurn version<br />
+about: some infos about pyBurn<br />
+restart: restart pyLoad<br />
+shoutdown: shoutdown pyLoad<br />
+
 
 ##Requiers:
 
