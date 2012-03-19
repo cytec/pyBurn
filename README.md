@@ -83,3 +83,7 @@ default no<br />
 **Twitter Notify User:**<br />
 Use this if you like to Notify another like the one who send the connand, leve it as it is to send notes back to the sender<br />
 default none<br />
+<br/>
+**Twitter Notify for every File:**<br />
+Notifications for every File thats successfully downloaded (no/yes) if no is selected notifications are only send if a Package is finished<br />
+default no<br />
